@@ -1,10 +1,6 @@
 import { memo } from 'react';
 import { Container, Navbar } from 'react-bootstrap';
 
-// <Button variant="primary" onClick={handleShow}>
-//   Menu
-// </Button>
-
 function Header({ handleShow }) {
   return (
     <Navbar bg="light" expand={false} className="mb-3">
