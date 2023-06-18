@@ -2,6 +2,7 @@ import { memo, useState } from 'react';
 import PageLayout from '../../components/page-layout';
 import Header from '../../components/header';
 import Menu from '../../components/menu';
+import CardList from '../../components/card-list';
 
 function Main() {
   const [show, setShow] = useState(false);
@@ -15,7 +16,7 @@ function Main() {
     <PageLayout>
       <Header handleShow={callbacks.onShowMenu} />
       <Menu show={show} handleClose={callbacks.onMenuClose} />
-      Main
+      <CardList />
     </PageLayout>
   );
 }
