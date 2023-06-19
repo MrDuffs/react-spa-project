@@ -1,9 +1,8 @@
-export function* workerSaga() {}
-
-export function* watchSaga() {
-  console.log('123');
-}
+import { all, spawn } from 'redux-saga/effects';
+import postsSaga from './posts';
 
 export default function* rootSaga() {
-  yield watchSaga();
+  const sagas = [postsSaga];
+
+  yield all(sagas.map((s) => spawn(s)));
 }
