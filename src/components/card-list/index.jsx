@@ -1,16 +1,14 @@
 import { memo } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
-import ItemCard from '../item-card';
 
-function CardList(props) {
+function CardList({ list, renderItem }) {
   return (
     <Container>
-      {[1, 2, 3].map((item, index) => (
+      {list.map((item) => (
         <>
-          {/* eslint-disable-next-line react/no-array-index-key */}
-          <Row key={index}>
+          <Row key={item.id}>
             <Col>
-              <ItemCard />
+              {renderItem(item)}
             </Col>
           </Row>
           <br />

@@ -1,13 +1,13 @@
 import { memo } from 'react';
 import { Card } from 'react-bootstrap';
 
-function ItemCard(props) {
+function ItemCard({ item }) {
   return (
     <Card>
       <Card.Body>
-        <Card.Title>Special title treatment</Card.Title>
+        <Card.Title>{item.title}</Card.Title>
         <Card.Text>
-          With supporting text below as a natural lead-in to additional content.
+          {item?.body}
         </Card.Text>
       </Card.Body>
     </Card>
