@@ -1,4 +1,4 @@
-import {
+import React, {
   memo, useCallback, useEffect, useState,
 } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,6 +7,7 @@ import Header from '../../components/header';
 import Menu from '../../components/menu';
 import CardList from '../../components/card-list';
 import ItemCard from '../../components/item-card';
+import PostsFilter from '../../containers/posts-filter';
 
 function Main() {
   const dispatch = useDispatch();
@@ -40,6 +41,7 @@ function Main() {
     <PageLayout>
       <Header handleShow={callbacks.onShowMenu} />
       <Menu show={show} handleClose={callbacks.onMenuClose} />
+      <PostsFilter />
       {select.posts.length
         ? <CardList list={select.posts} renderItem={renders.post} />
         : 'Загрузка...'}
