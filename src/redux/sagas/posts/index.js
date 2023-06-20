@@ -5,11 +5,12 @@ import {
   put,
 } from 'redux-saga/effects';
 import { LOAD_POSTS, LOAD_POSTS_SUCCESS } from '../../reducers/posts/actions';
+import { getAllPostsAPI } from '../../../api';
 
 // saga worker
 export function* loadPosts() {
-  const request = yield call(fetch, 'https://jsonplaceholder.typicode.com/posts');
-  const data = yield apply(request, request.json);
+  const request = yield call(getAllPostsAPI, '/posts?_limit=10');
+  const { data } = request;
 
   yield put({
     type: LOAD_POSTS_SUCCESS,
