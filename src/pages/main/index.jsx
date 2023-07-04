@@ -1,13 +1,10 @@
-import React, {
-  memo, useCallback, useEffect, useState,
-} from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { memo, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import PageLayout from '../../components/page-layout';
 import Header from '../../components/header';
 import Menu from '../../components/menu';
-import CardList from '../../components/card-list';
-import ItemCard from '../../components/item-card';
 import PostsFilter from '../../containers/posts-filter';
+import PostsList from '../../containers/posts-list';
 
 function Main() {
   const dispatch = useDispatch();
@@ -19,22 +16,9 @@ function Main() {
     });
   }, [dispatch]);
 
-  const select = useSelector((state) => ({
-    posts: state.posts.data,
-    loading: state.posts.loading,
-  }));
-
-  // if (select) console.log(select.loading);
-
   const callbacks = {
     onShowMenu: () => setShow(true),
     onMenuClose: () => setShow(false),
-  };
-
-  const renders = {
-    post: useCallback((item) => (
-      <ItemCard item={item} />
-    ), []),
   };
 
   return (
@@ -42,9 +26,7 @@ function Main() {
       <Header handleShow={callbacks.onShowMenu} />
       <Menu show={show} handleClose={callbacks.onMenuClose} />
       <PostsFilter />
-      {select.posts.length
-        ? <CardList list={select.posts} renderItem={renders.post} />
-        : 'Загрузка...'}
+      <PostsList />
     </PageLayout>
   );
 }
