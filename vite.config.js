@@ -13,6 +13,7 @@ export default defineConfig({
       '/api': {
         target: 'https://jsonplaceholder.typicode.com',
         changeOrigin: true,
+        secure: false,
         rewrite: (path) => path.replace(/^\/api/, ''),
       },
     },
