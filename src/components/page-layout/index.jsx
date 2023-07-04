@@ -4,7 +4,7 @@ import './style.css';
 
 function PageLayout({ children }) {
   return (
-    <Container fluid className="p-0">
+    <Container fluid className="p-0 min-vh-100">
       {children}
     </Container>
   );
