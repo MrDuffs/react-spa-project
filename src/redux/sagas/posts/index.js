@@ -1,20 +1,37 @@
 import {
+  take,
   takeEvery,
+  fork,
+  takeLatest,
   call,
-  apply,
+  select,
   put,
 } from 'redux-saga/effects';
-import { LOAD_POSTS, LOAD_POSTS_SUCCESS } from '../../reducers/posts/actions';
+import {
+  LOAD_POSTS,
+  LOAD_POSTS_SUCCESS,
+} from '../../reducers/posts/actions';
 import { getAllPostsAPI } from '../../../api';
 
 // saga worker
 export function* loadPosts() {
-  const request = yield call(getAllPostsAPI, '/posts?_limit=10');
-  const { data } = request;
+  const state = yield select((state) => state.posts);
+  const { page, limit } = state.params;
+  // console.log(page || 1);
+
+  const request = yield call(getAllPostsAPI, `/posts?_page=${page || 1}&_limit=${limit || 10}`);
+  const { data, headers } = request;
 
   yield put({
     type: LOAD_POSTS_SUCCESS,
-    payload: data,
+    payload: {
+      data,
+      params: {
+        page: page || 1,
+        limit: limit || 10,
+      },
+      count: headers['x-total-count'],
+    },
   });
 }
 
