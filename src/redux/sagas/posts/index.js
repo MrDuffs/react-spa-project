@@ -26,10 +26,6 @@ export function* loadPosts() {
     type: LOAD_POSTS_SUCCESS,
     payload: {
       data,
-      params: {
-        page: page || 1,
-        limit: limit || 10,
-      },
       count: headers['x-total-count'],
     },
   });

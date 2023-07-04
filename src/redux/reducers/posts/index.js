@@ -37,10 +37,6 @@ export default function postsReducer(state = initialPostsState, action) {
     return {
       ...state,
       data: action.payload.data,
-      params: {
-        ...state.params,
-        ...params,
-      },
       count: action.payload.count,
       loading: false,
     };
