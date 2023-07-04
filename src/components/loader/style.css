@@ -1,0 +1,13 @@
+.loader {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px
+}
+
+.loader__message {
+    color: #0dcaf0;
+    font-size: 1.2rem;
+}
